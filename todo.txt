@@ -1,0 +1,30 @@
+-debugging
+    -feedback with the light/driverstation/controller vibrations
+    -radio
+
+-bugs:
+    -autonomous & teleop state crashing when simulating
+
+-controller (get vex to work with code)
+
+-Manual (teleop)
+    -Controller interface with rollers
+    -Controller interface with arm
+    -Method of engaging the autonomous collection of algae
+
+-Autonomous
+    -Drive to reef (done, needs testing)
+    -April tag / vision for aligning
+    -auto scoring
+
+    Autonomous:
+    -For 15 seconds
+    -Move forward
+    -Align with Apriltag
+    -Spin motor of roller
+    -Go for lower or higher algae (level 2 or level 3)
+        -If lower algae: lower arm
+        -If higher algae: raise arm
+
+    Level 2: 31.875 in off floor
+    Level 3: 47.625 in
