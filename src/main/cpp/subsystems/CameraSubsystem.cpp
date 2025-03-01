@@ -11,8 +11,8 @@ CameraSubsystem::CameraSubsystem() : camera(frc::CameraServer::StartAutomaticCap
     camera.SetFPS(2);
 };*/
 CameraSubsystem::CameraSubsystem() {
-    std::thread visionThread(&CameraSubsystem::VisionThread);
-    visionThread.detach();
+    //std::thread visionThread(&CameraSubsystem::VisionThread);
+    //visionThread.detach();
 }
 
 void CameraSubsystem::UpdateCamera() {}
@@ -34,7 +34,7 @@ void CameraSubsystem::VisionThread() {
         frc::AprilTagPoseEstimator(poseEstConfig);
 
     // Get the USB camera from CameraServer
-    cs::UsbCamera camera = frc::CameraServer::StartAutomaticCapture();
+    cs::UsbCamera camera = frc::CameraServer::StartAutomaticCapture(1);
     // Set the resolution
     camera.SetResolution(640, 480);
 
@@ -131,17 +131,17 @@ void CameraSubsystem::VisionThread() {
 
       // Give the output stream a new image to display
        outputStream.PutFrame(mat);
-}
+    }
 }
 // This method will be called once per scheduler run
-/*
+
 void CameraSubsystem::Periodic() {
-    if (cvSink.GrabFrame(mat) == 0) {
+    /*if (cvSink.GrabFrame(mat) == 0) {
         outputStream.NotifyError(cvSink.GetError());
     } else {
         cv::cvtColor(mat, mat, cv::COLOR_BGR2GRAY); //grayscale
         //cv::resize(mat, mat, cv::Size(mat.cols / 2, mat.cols / 2), 0, 0, cv::INTER_AREA); //decimate
         
         outputStream.PutFrame(mat);
-    }
-}*/
+    }*/
+}

@@ -5,8 +5,8 @@
 #pragma once
 
 #include <frc2/command/CommandPtr.h>
-#include <frc2/command/button/CommandXboxController.h>
-#include <frc2/command/button/CommandJoystick.h>
+#include <frc2/command/button/CommandPS4Controller.h>
+//#include <frc2/command/button/CommandJoystick.h>
 
 #include "Constants.h"
 
@@ -39,7 +39,7 @@ class RobotContainer {
 
     private:
         // The robot's subsystems are defined here...
-        CommandXboxController driverController{OperatorConstants::DRIVER_CONTROLLER_PORT};
+        CommandPS4Controller driverController{OperatorConstants::DRIVER_CONTROLLER_PORT};
 
         DriveSubsystem driveSubsystem;
         RollerSubsystem rollerSubsystem;

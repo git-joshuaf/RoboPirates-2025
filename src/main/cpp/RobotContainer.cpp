@@ -9,6 +9,8 @@ RobotContainer::RobotContainer() {
 
     // Configure the button bindings
     ConfigureBindings();
+    std::thread visionThread(cameraSubsystem.VisionThread);
+    visionThread.detach();
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -20,7 +22,7 @@ void RobotContainer::ConfigureBindings() {
         [this] { return -driverController.GetRightX(); }
     )); //weird lambdas(?), basically lets drive command get info from controller without passing in controller. Maybe change this
 
-    driverController.A().WhileTrue(RollerCommand( //constant speed while held
+    driverController.Triangle().WhileTrue(RollerCommand( //constant speed while held
         &rollerSubsystem,
         [this] { return RollerConstants::ROLLER_MOTOR_EJECT_SPEED; },
         [this] { return 0; })
@@ -28,13 +30,13 @@ void RobotContainer::ConfigureBindings() {
 
     linearActuatorsSubsystem.SetDefaultCommand(LinearActuatorsCommand( //uses triggers to raise robot
         &linearActuatorsSubsystem,
-        [this] { return driverController.GetRightTriggerAxis(); },
-        [this] { return driverController.GetLeftTriggerAxis(); }
+        [this] { return driverController.GetR2Axis(); },
+        [this] { return driverController.GetL2Axis(); }
     ));
 
     armServoSubsystem.SetDefaultCommand(ArmServoCommand(
         &armServoSubsystem,
-        [this] { return driverController.B().Get(); }
+        [this] { return driverController.Square().Get(); }
     ));
 }
 

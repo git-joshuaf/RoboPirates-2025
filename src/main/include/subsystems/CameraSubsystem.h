@@ -30,7 +30,8 @@ public:
     void Periodic() override;
 
     void UpdateCamera();
-    void VisionThread();
+
+    static void VisionThread();
 
 private:
     // Components (e.g. motor controllers and sensors) should generally be
